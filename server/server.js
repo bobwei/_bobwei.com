@@ -1,9 +1,15 @@
-var express = require('express');
-var app = express();
-var cors = require('cors');
-var compression = require('compression');
+import express from 'express';
+import cors from 'cors';
+import compression from 'compression';
+import path from 'path';
+import webpack from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
+import config from '../webpack.config';
+import proxy from 'proxy-middleware';
+import url from 'url';
 
-var env = process.env.env || 'dev';
+let app = express();
+let env = process.env.env || 'dev';
 console.log('loading server for env: ' + env);
 
 app.set('port', (process.env.PORT || 5000));
@@ -16,10 +22,6 @@ app.use(cors({
 
 if (env === 'dev') {
   /*eslint no-console:0 */
-  var webpack = require('webpack');
-  var WebpackDevServer = require('webpack-dev-server');
-  var config = require('./webpack.config');
-
   new WebpackDevServer(webpack(config), config.devServer)
   .listen(config.port, 'localhost', function(err) {
     if (err) {
@@ -28,21 +30,18 @@ if (env === 'dev') {
     console.log('Webpack Dev Server Listening at localhost:' + config.port);
   });
 
-  var proxy = require('proxy-middleware');
-  var url = require('url');
-
   app.use('/assets', proxy(url.parse('http://localhost:8000/assets')));
 } else {
-  app.use('/assets', express.static(__dirname + '/dist/assets'));
+  app.use('/assets', express.static(__dirname + '/../dist/assets'));
 }
 
 
 app.get('*', function(request, response) {
-  var htmlPath = '/dist/index.html';
+  let htmlPath = __dirname + '/../dist/index.html';
   if (env === 'dev') {
-    htmlPath = '/src/index.html';
+    htmlPath = __dirname + '/../src/index.html';
   }
-  response.sendFile(__dirname + htmlPath);
+  response.sendFile(path.resolve(htmlPath));
 });
 
 app.listen(app.get('port'), function() {
