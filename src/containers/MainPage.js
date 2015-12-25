@@ -11,6 +11,8 @@ class MainPage extends React.Component {
     return (
       <div>
         <NavigationBar />
+        <div className="container">
+        </div>
       </div>
     );
   }
