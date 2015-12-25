@@ -3,6 +3,9 @@ var app = express();
 var cors = require('cors');
 var compression = require('compression');
 
+var env = process.env.env || 'dev';
+console.log('loading server for env: ' + env);
+
 app.set('port', (process.env.PORT || 5000));
 
 app.use(compression());
@@ -11,7 +14,7 @@ app.use(cors({
   credentials: true
 }));
 
-if (process.env.env === 'dev') {
+if (env === 'dev') {
   /*eslint no-console:0 */
   var webpack = require('webpack');
   var WebpackDevServer = require('webpack-dev-server');
@@ -36,7 +39,7 @@ if (process.env.env === 'dev') {
 
 app.get('*', function(request, response) {
   var htmlPath = '/dist/index.html';
-  if (process.env.env === 'dev') {
+  if (env === 'dev') {
     htmlPath = '/src/index.html';
   }
   response.sendFile(__dirname + htmlPath);
