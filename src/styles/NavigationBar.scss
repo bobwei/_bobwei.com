@@ -1,0 +1,24 @@
+.navigation-bar {
+  height: 43px;
+  line-height: 43px;
+  font-size: 1.6rem;
+  padding-top: 5px;
+
+  .item {
+    color: #9B9B9B;
+    padding: 15px 10px;
+
+    &.active {
+      color: #169CEE;
+      border-bottom: 2px solid #169CEE;
+    }
+
+    &:hover {
+      color: darken(#169CEE, 30%);
+
+      &.active {
+        border-color: darken(#169CEE, 30%);
+      }
+    }
+  }
+}

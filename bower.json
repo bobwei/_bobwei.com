@@ -1,0 +1,19 @@
+{
+  "name": "bobwei.com",
+  "version": "0.0.0",
+  "authors": [
+    "bobwei <bob61016@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.6",
+    "fontawesome": "~4.5.0"
+  }
+}

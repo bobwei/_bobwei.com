@@ -1,12 +1,9 @@
-require('normalize.css');
-require('styles/App.scss');
-
 import React from 'react';
 
 import NavigationBar from 'components/NavigationBar';
 
 
-class MainPage extends React.Component {
+class PortfolioPage extends React.Component {
   render() {
     return (
       <div>
@@ -16,7 +13,7 @@ class MainPage extends React.Component {
   }
 }
 
-MainPage.defaultProps = {
+PortfolioPage.defaultProps = {
 };
 
-export default MainPage;
+export default PortfolioPage;
