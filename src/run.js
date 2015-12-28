@@ -4,7 +4,7 @@ import createHashHistory from 'history/lib/createHashHistory'
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 let history;
-if (location.port === '8000' || location.protocol === 'file') {
+if (location.port === '8000' || location.protocol === 'file:') {
   history = createHashHistory({
     queryKey: false
   });
