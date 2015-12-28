@@ -14,7 +14,10 @@ var config = _.merge({
   plugins: [
     new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"'
+      'process.env': {
+        BROWSER: JSON.stringify(true),
+        NODE_ENV: '"production"'
+      }
     }),
     new BowerWebpackPlugin({
       searchResolveModulesDirectories: false
