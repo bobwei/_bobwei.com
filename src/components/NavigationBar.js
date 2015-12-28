@@ -1,4 +1,4 @@
-require('styles/NavigationBar.scss');
+require('../styles/NavigationBar.scss');
 
 import React from 'react';
 import { Link } from 'react-router';
