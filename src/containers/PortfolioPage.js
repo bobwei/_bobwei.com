@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NavigationBar from 'components/NavigationBar';
+import NavigationBar from '../components/NavigationBar';
 
 
 class PortfolioPage extends React.Component {

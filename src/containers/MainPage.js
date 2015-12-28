@@ -1,5 +1,7 @@
-require('normalize.css');
-require('../styles/App.scss');
+if (process.env.BROWSER) {
+  require('normalize.css');
+  require('../styles/App.scss');
+}
 
 import React from 'react';
 

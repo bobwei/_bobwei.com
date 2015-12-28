@@ -8,7 +8,16 @@ import config from '../webpack.config';
 import proxy from 'proxy-middleware';
 import url from 'url';
 
+import React from 'react';
+import createMemoryHistory from 'history/lib/createMemoryHistory'
+import { renderToStaticMarkup } from 'react-dom/server';
+import { match, RoutingContext } from 'react-router'
+import createRoutes from '../src/routes/index';
+
+
 let app = express();
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
 let env = process.env.env || 'dev';
 console.log('loading server for env: ' + env);
 
@@ -37,11 +46,23 @@ if (env === 'dev') {
 
 
 app.get('*', function(request, response) {
-  let htmlPath = __dirname + '/../dist/index.html';
-  if (env === 'dev') {
-    htmlPath = __dirname + '/../src/index.html';
-  }
-  response.sendFile(path.resolve(htmlPath));
+  let history = createMemoryHistory();
+  let routes = createRoutes(history);
+  match({
+    routes,
+    location: request.url
+  }, (error, redirectLocation, renderProps) => {
+    if (error) {
+      response.status(500).send(error.message);
+    } else if (redirectLocation) {
+      response.redirect(302, redirectLocation.pathname + redirectLocation.search);
+    } else if (renderProps) {
+      let html = renderToStaticMarkup(<RoutingContext {...renderProps} />);
+      response.render('index', { html });
+    } else {
+      response.status(404).send('Not found');
+    }
+  })
 });
 
 app.listen(app.get('port'), function() {
