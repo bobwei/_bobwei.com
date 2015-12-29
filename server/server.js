@@ -30,7 +30,6 @@ app.use(cors({
 }));
 
 if (env === 'dev') {
-  /*eslint no-console:0 */
   new WebpackDevServer(webpack(config), config.devServer)
   .listen(config.port, 'localhost', function(err) {
     if (err) {
