@@ -46,3 +46,16 @@
     }
   }
 }
+
+@media (min-width: $screen-md-min) {
+
+  .rtl {
+
+    @for $i from 1 through 12 {
+
+      .col-md-#{$i} {
+        float: right;
+      }
+    }
+  }
+}
