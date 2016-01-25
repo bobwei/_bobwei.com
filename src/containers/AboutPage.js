@@ -51,6 +51,7 @@ class AboutPage extends React.Component {
                 onClick={this.onLinkClick.bind(this, 'My Facebook')}
               >
                 My Facebook
+                <i className="fa fa-chevron-right" />
               </a>
             </div>
           </div>
