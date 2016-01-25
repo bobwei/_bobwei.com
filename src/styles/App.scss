@@ -2,12 +2,17 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 $fa-font-path:   "../bower_components/fontawesome/fonts";
 
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
-@import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
-@import '../bower_components/fontawesome/scss/font-awesome';
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "../bower_components/fontawesome/scss/font-awesome";
+
+@import "./NavigationBar";
+@import "./CoverPhoto";
 
 body {
   min-height: 200vh;
   letter-spacing: 1px;
+  background-color: #333;
+  font-family: HelveticaNeue-Light;
 }
 
 a {
@@ -21,20 +26,6 @@ a {
 
   &:focus {
     text-decoration: none;
-  }
-}
-
-.cover-photo {
-  height: 370px;
-  position: relative;
-  text-align: center;
-
-  background-image: url("../images/bg.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  h1 {
-    font-size: 28px;
   }
 }
 
