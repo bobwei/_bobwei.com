@@ -1,0 +1,14 @@
+.btn-transparent {
+  color: white;
+  background-color: transparent;
+  border-color: white;
+
+  &:hover, &:focus {
+    color: darken(white, 15%);
+    border-color: darken(white, 15%);
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+}

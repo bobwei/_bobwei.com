@@ -1,3 +1,4 @@
+/* global ga */
 import React from 'react';
 import classnames from 'classnames';
 
@@ -5,6 +6,15 @@ import { nl2br } from '../utils';
 
 
 export default class Pages extends React.Component {
+
+  onDownloadClick(title, type) {
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Click',
+      eventAction: `${title}, ${type}`
+    });
+  }
+
   render() {
     return (
       <div>
@@ -23,6 +33,36 @@ export default class Pages extends React.Component {
                     <h3>
                       {nl2br(page.description)}
                     </h3>
+                    {(() => {
+                      if (page.link.ios) {
+                        let url = page.link.ios;
+                        return (
+                          <a
+                            href={url}
+                            className="btn btn-transparent btn-lg download"
+                            target="_blank"
+                            onClick={this.onDownloadClick.bind(this, page.contentTitle, 'iOS')}
+                          >
+                            iOS 下載
+                          </a>
+                        );
+                      }
+                    })()}
+                    {(() => {
+                      if (page.link.android) {
+                        let url = page.link.android;
+                        return (
+                          <a
+                            href={url}
+                            className="btn btn-transparent btn-lg download"
+                            target="_blank"
+                            onClick={this.onDownloadClick.bind(this, page.contentTitle, 'Android')}
+                          >
+                            Android 下載
+                          </a>
+                        );
+                      }
+                    })()}
                   </div>
                 </div>
               </div>
@@ -51,8 +91,11 @@ Pages.defaultProps = {
     description: `累積突破 200 萬次下載數，
       每天超過 5000 筆行動訂單，
       使用者評價高於 4 顆星，
-      優質服務從不間斷，美味幸福在眼前。
-    `
+      優質服務從不間斷，美味幸福在眼前。`,
+    link: {
+      ios: 'https://itunes.apple.com/tw/app/mos-order/id509435066?mt=8',
+      android: 'https://play.google.com/store/apps/details?id=com.yksix.mos.mosorder&hl=en'
+    }
   }, {
     order: 'rtl',
     coverImage: (() => {
@@ -70,7 +113,10 @@ Pages.defaultProps = {
     description: `全方位旅遊服務整合，
     即時查詢、即時商品訂購，
     使用者評價高於 4 顆星，
-    不論您在哪裡，輕鬆訂購好 Fun 心！
-    `
+    不論您在哪裡，輕鬆訂購好 Fun 心！`,
+    link: {
+      ios: 'https://itunes.apple.com/tw/app/dong-nan-lu-you/id472918191',
+      android: 'https://play.google.com/store/apps/details?id=tw.com.settour.android.mobilecalendar'
+    }
   }]
 };
