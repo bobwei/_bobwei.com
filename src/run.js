@@ -17,9 +17,8 @@ if (location.port === '8000' || location.protocol === 'file:') {
 } else {
   history = browserHistory;
 }
-
-let routes = createRoutes(history);
-let store = configureStore();
+const routes = createRoutes(history);
+const store = configureStore(undefined, history);
 
 ReactDOM.render(
   <Provider store={store}>

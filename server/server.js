@@ -9,10 +9,12 @@ import proxy from 'proxy-middleware';
 import url from 'url';
 
 import React from 'react';
-import { createMemoryHistory } from 'react-router';
+import createHistory from 'history/lib/createMemoryHistory';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { match, RouterContext } from 'react-router'
+import { match, RouterContext } from 'react-router';
+import { Provider } from 'react-redux';
 import createRoutes from '../src/routes/index';
+import configureStore from '../src/stores/configureStore';
 
 
 let app = express();
@@ -45,8 +47,9 @@ if (env === 'dev') {
 
 
 app.get('*', function(request, response) {
-  let history = createMemoryHistory();
+  let history = createHistory();
   let routes = createRoutes(history);
+  let store = configureStore(undefined, history);
   match({
     routes,
     location: request.url
@@ -56,7 +59,11 @@ app.get('*', function(request, response) {
     } else if (redirectLocation) {
       response.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
-      let html = renderToStaticMarkup(<RouterContext {...renderProps} />);
+      let html = renderToStaticMarkup(
+        <Provider store={store} >
+          <RouterContext {...renderProps} />
+        </Provider>
+      );
       response.render('index', { html });
     } else {
       response.status(404).send('Not found');
