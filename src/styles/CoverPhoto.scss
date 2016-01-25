@@ -1,5 +1,5 @@
 .cover-photo {
-  height: 600px;
+  min-height: 90vh;
   position: relative;
   text-align: center;
 
@@ -10,8 +10,8 @@
 
   h1 {
     font-size: 30px;
-    padding: 365px 0 0 0;
-    margin-top: 0;
+    // padding: 365px 0 0 0;
+    margin: 0;
     color: white;
     line-height: 38px;
   }
@@ -20,11 +20,22 @@
 @media (max-width: $screen-sm-max) {
 
   .cover-photo {
-    height: 300px;
+    min-height: 300px;
 
     h1 {
-      padding: 160px 0 0 0;
+      padding: 100px 0 0 0;
       margin: 0 20px;
+      max-width: 300px;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+
+  .cover-photo {
+
+    h1 {
+      padding-top: 150px;
     }
   }
 }

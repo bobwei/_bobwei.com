@@ -1,0 +1,32 @@
+.page {
+  min-height: 600px;
+  padding: 20px;
+
+  &.color-background {
+    color: white;
+  }
+
+  .content {
+    min-height: 323px;
+    max-width: 442px;
+  }
+
+  h1 {
+    font-size: 30px;
+    line-height: 38px;
+    margin: 30px 0;
+  }
+
+  h3 {
+    font-size: 24px;
+    line-height: 34px;
+    margin: 30px 0;
+  }
+}
+
+@media (max-width: $screen-sm-max) {
+
+  .page {
+    min-height: 300px;
+  }
+}

@@ -7,11 +7,11 @@ $fa-font-path:   "../bower_components/fontawesome/fonts";
 
 @import "./NavigationBar";
 @import "./CoverPhoto";
+@import "./Page";
 
 body {
-  min-height: 200vh;
+  min-height: 1200px;
   letter-spacing: 1px;
-  background-color: #333;
   font-family: HelveticaNeue-Light;
 }
 
@@ -65,4 +65,10 @@ a {
   .link {
     font-size: 15px;
   }
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

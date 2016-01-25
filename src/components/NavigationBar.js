@@ -8,7 +8,7 @@ class NavigationBar extends React.Component {
 
   render() {
     return (
-      <nav className="navbar navbar-transparent navbar-fixed-top">
+      <nav className="navbar navbar-transparent navbar-absolute-top">
         <div className="container">
           <div className="navbar-header">
             <Link to="/" className="navbar-brand">

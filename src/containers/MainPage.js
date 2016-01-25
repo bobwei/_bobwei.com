@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import NavigationBar from '../components/NavigationBar';
+import Pages from '../components/Pages';
 
 
 class MainPage extends React.Component {
@@ -9,11 +10,12 @@ class MainPage extends React.Component {
     return (
       <div>
         <NavigationBar />
-        <div className="cover-photo">
+        <div className="cover-photo center">
           <h1>
             Build Something Users Love !
           </h1>
         </div>
+        <Pages />
       </div>
     );
   }
