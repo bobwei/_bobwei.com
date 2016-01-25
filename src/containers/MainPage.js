@@ -1,9 +1,6 @@
-if (process.env.BROWSER) {
-  require('normalize.css');
-  require('../styles/App.scss');
-}
-
 import React from 'react';
+
+import { connect } from 'react-redux';
 
 
 class MainPage extends React.Component {
@@ -34,4 +31,8 @@ class MainPage extends React.Component {
 MainPage.defaultProps = {
 };
 
-export default MainPage;
+export default connect((state) => {
+  return {
+    routing: state.routing
+  };
+})(MainPage);
