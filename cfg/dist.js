@@ -9,7 +9,10 @@ var baseConfig = require('./base');
 var BowerWebpackPlugin = require('bower-webpack-plugin');
 
 var config = _.merge({
-  entry: path.join(__dirname, '../src/run'),
+  entry: [
+    'babel-core/lib/polyfill',
+    path.join(__dirname, '../src/run')
+  ],
   cache: false,
   devtool: 'sourcemap',
   plugins: [
@@ -27,6 +30,10 @@ var config = _.merge({
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.NoErrorsPlugin(),
+    new webpack.ProvidePlugin({
+      'Promise': 'exports?global.Promise!es6-promise',
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+    }),
     new ExtractTextPlugin('[name].css')
   ]
 }, baseConfig);

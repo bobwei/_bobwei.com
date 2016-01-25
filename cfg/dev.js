@@ -12,6 +12,7 @@ var config = _.merge({
   entry: [
     'webpack-dev-server/client?http://127.0.0.1:8000',
     'webpack/hot/only-dev-server',
+    'babel-core/lib/polyfill',
     './src/run'
   ],
   cache: true,
@@ -21,6 +22,10 @@ var config = _.merge({
     new webpack.NoErrorsPlugin(),
     new BowerWebpackPlugin({
       searchResolveModulesDirectories: false
+    }),
+    new webpack.ProvidePlugin({
+      'Promise': 'exports?global.Promise!es6-promise',
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     }),
     new webpack.DefinePlugin({
       'process.env': {

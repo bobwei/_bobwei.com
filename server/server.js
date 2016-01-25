@@ -9,9 +9,9 @@ import proxy from 'proxy-middleware';
 import url from 'url';
 
 import React from 'react';
-import createMemoryHistory from 'history/lib/createMemoryHistory'
+import { createMemoryHistory } from 'react-router';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { match, RoutingContext } from 'react-router'
+import { match, RouterContext } from 'react-router'
 import createRoutes from '../src/routes/index';
 
 
@@ -21,7 +21,7 @@ app.set('view engine', 'ejs')
 let env = process.env.env || 'dev';
 console.log('loading server for env: ' + env);
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 5002));
 
 app.use(compression());
 app.use(cors({
@@ -56,7 +56,7 @@ app.get('*', function(request, response) {
     } else if (redirectLocation) {
       response.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
-      let html = renderToStaticMarkup(<RoutingContext {...renderProps} />);
+      let html = renderToStaticMarkup(<RouterContext {...renderProps} />);
       response.render('index', { html });
     } else {
       response.status(404).send('Not found');

@@ -1,15 +1,12 @@
 import ReactDOM from 'react-dom';
 
-import createHashHistory from 'history/lib/createHashHistory'
-import createBrowserHistory from 'history/lib/createBrowserHistory';
+import { browserHistory, hashHistory } from 'react-router';
 
 let history;
 if (location.port === '8000' || location.protocol === 'file:') {
-  history = createHashHistory({
-    queryKey: false
-  });
+  history = hashHistory;
 } else {
-  history = createBrowserHistory();
+  history = browserHistory;
 }
 
 import createRoutes from './routes/index';
