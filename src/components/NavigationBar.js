@@ -17,9 +17,9 @@ class NavigationBar extends React.Component {
           </div>
           <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav right">
-              <li className={classNames({'active': this.context.router.isActive({pathname: '/products'})})}>
-                <Link to="/products">
-                  Products
+              <li className={classNames({'active': this.context.router.isActive({pathname: '/about'})})}>
+                <Link to="/about">
+                  關於
                 </Link>
               </li>
             </ul>

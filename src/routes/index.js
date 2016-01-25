@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Route } from 'react-router';
 
 import MainPage from '../containers/MainPage';
+import AboutPage from '../containers/AboutPage';
 
 
 export default function(history) {
@@ -16,6 +17,7 @@ export default function(history) {
       }}
     >
       <Route path="/" component={MainPage} />
+      <Route path="/about" component={AboutPage} />
     </Router>
   );
 }
