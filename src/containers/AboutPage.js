@@ -1,3 +1,4 @@
+/* global ga */
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -5,6 +6,15 @@ import NavigationBar from '../components/NavigationBar';
 
 
 class AboutPage extends React.Component {
+
+  onLinkClick(info) {
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Click',
+      eventAction: `${info}`
+    });
+  }
+
   render() {
     let coverPhoto;
     let profilePicture;
@@ -32,6 +42,16 @@ class AboutPage extends React.Component {
             </h1>
             <div className="subtitle-info">
               Linkwish, Inc. 共同創辦人、創業家與程式設計師
+            </div>
+            <div className="subtitle-info">
+              <a
+                href="https://fb.me/coolyu"
+                className="btn btn-transparent btn-lg"
+                target="_blank"
+                onClick={this.onLinkClick.bind(this, 'My Facebook')}
+              >
+                My Facebook
+              </a>
             </div>
           </div>
           <div className="gradient" />

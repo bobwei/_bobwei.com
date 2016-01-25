@@ -41,3 +41,26 @@
   left: 0;
   z-index: 1;
 }
+
+@media (max-width: $screen-sm-max) {
+
+  .navbar {
+
+    .container {
+      position: relative;
+    }
+
+    .collapse {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      border-top: 0;
+    }
+  }
+
+  .navbar-nav {
+    margin: 4px 0;
+  }
+}
