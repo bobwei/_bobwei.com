@@ -67,12 +67,17 @@ module.exports = {
       {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'},
       // {
       //   test: /\.scss$/,
-      //   loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
+      //   loader: 'style-loader!css-loader!sass-loader!postcss-loader?outputStyle=expanded'
       // }
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader?outputStyle=expanded')
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader!postcss-loader?outputStyle=expanded')
       }
     ]
+  },
+  postcss: function () {
+    return [
+      require('autoprefixer')
+    ];
   }
 };

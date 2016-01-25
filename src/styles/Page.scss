@@ -1,5 +1,5 @@
 .page {
-  min-height: 800px;
+  height: 800px;
   padding: 20px;
 
   &.color-background {
@@ -32,6 +32,7 @@
 @media (max-width: $screen-sm-max) {
 
   .page {
+    height: auto;
     min-height: 300px;
   }
 }
