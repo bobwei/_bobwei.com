@@ -15,6 +15,7 @@ import { match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
 import createRoutes from '../src/routes/index';
 import configureStore from '../src/stores/configureStore';
+import openGraph from './middlewares/openGraph';
 
 
 let app = express();
@@ -30,6 +31,7 @@ app.use(cors({
   origin: true,
   credentials: true
 }));
+app.use(openGraph());
 
 if (env === 'dev') {
   new WebpackDevServer(webpack(config), config.devServer)
@@ -40,6 +42,10 @@ if (env === 'dev') {
     console.log('Webpack Dev Server Listening at localhost:' + config.port);
   });
 
+  app.use(
+    '/assets/cover-photo.jpg',
+    express.static(__dirname + '/../src/images/cover-photo.jpg')
+  );
   app.use('/assets', proxy(url.parse('http://localhost:8000/assets')));
 } else {
   app.use('/assets', express.static(__dirname + '/../dist/assets'));
@@ -64,7 +70,10 @@ app.get('*', function(request, response) {
           <RouterContext {...renderProps} />
         </Provider>
       );
-      response.render('index', { html });
+      response.render('index', {
+        html,
+        openGraph: request.openGraph
+      });
     } else {
       response.status(404).send('Not found');
     }
