@@ -37,7 +37,7 @@ Pages.defaultProps = {
   pages: [{
     coverImage: (() => {
       if (process.env.BROWSER) {
-        return require('../images/mosorder.png');
+        return require('../images/mosorder.jpg');
       }
     })(),
     coverImageStyles: {
