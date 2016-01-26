@@ -7,6 +7,7 @@ import WebpackDevServer from 'webpack-dev-server';
 import config from '../webpack.config';
 import proxy from 'proxy-middleware';
 import url from 'url';
+import dotenv from 'dotenv';
 
 import React from 'react';
 import createHistory from 'history/lib/createMemoryHistory';
@@ -32,6 +33,7 @@ app.use(cors({
   credentials: true
 }));
 app.use(openGraph());
+dotenv.config();
 
 if (env === 'dev') {
   new WebpackDevServer(webpack(config), config.devServer)
@@ -79,7 +81,8 @@ app.get('*', function(request, response) {
       );
       response.render('index', {
         html,
-        openGraph: request.openGraph
+        openGraph: request.openGraph,
+        FACEBOOK_APP_ID: process.env.FACEBOOK_APP_ID
       });
     } else {
       response.status(404).send('Not found');
