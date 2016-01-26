@@ -51,6 +51,13 @@ if (env === 'dev') {
   app.use('/assets', express.static(__dirname + '/../dist/assets'));
 }
 
+app.get('/robots.txt', (request, response) => {
+  response.format({
+    'text/plain': function () {
+      response.status(200).render('robots')
+    }
+  })
+})
 
 app.get('*', function(request, response) {
   let history = createHistory();
