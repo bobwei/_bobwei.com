@@ -19,7 +19,7 @@ class NavigationBar extends React.Component {
         <div className="container">
           <div className="navbar-header">
             <Link to="/" className="navbar-brand">
-              Bob Wei ( 韋伯俞 )
+              Bob Wei <span className="chinese-name">( 韋伯俞 )</span>
             </Link>
             <SocialButton likeUrl={likeUrl} />
           </div>
