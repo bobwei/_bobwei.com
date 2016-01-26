@@ -6,6 +6,7 @@ import Pages from '../components/Pages';
 
 
 class MainPage extends React.Component {
+
   render() {
     let coverPhoto;
     if (process.env.BROWSER) {

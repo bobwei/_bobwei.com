@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var _ = require('lodash');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+require('dotenv').config();
 
 var baseConfig = require('./base');
 
@@ -29,7 +30,11 @@ var config = _.merge({
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        BROWSER: JSON.stringify(true)
+        BROWSER: JSON.stringify(true),
+        PARSE_APPLICATION_ID: JSON.stringify(process.env.PARSE_APPLICATION_ID),
+        PARSE_JAVASCRIPT_KEY: JSON.stringify(process.env.PARSE_JAVASCRIPT_KEY),
+        FACEBOOK_APP_ID: JSON.stringify(process.env.FACEBOOK_APP_ID),
+        GOOGLE_ANALYTICS_ID: JSON.stringify(process.env.GOOGLE_ANALYTICS_ID)
       }
     }),
     new ExtractTextPlugin('[name].css')

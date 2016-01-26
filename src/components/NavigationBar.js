@@ -1,12 +1,19 @@
 import React from 'react';
-
 import classNames from 'classnames';
 import { Link } from 'react-router';
+
+import SocialButton from './SocialButton';
 
 
 class NavigationBar extends React.Component {
 
   render() {
+    let likeUrl;
+    try {
+      likeUrl = window.location.href;
+    } catch(e) {
+      console.log(e);
+    }
     return (
       <nav className="navbar navbar-transparent navbar-absolute-top">
         <div className="container">
@@ -14,6 +21,7 @@ class NavigationBar extends React.Component {
             <Link to="/" className="navbar-brand">
               Bob Wei ( 韋伯俞 )
             </Link>
+            <SocialButton likeUrl={likeUrl} />
           </div>
           <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav right">
