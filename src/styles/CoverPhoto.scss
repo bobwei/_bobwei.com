@@ -18,6 +18,7 @@
 
   &.background-shift {
     animation: background-shift 20s forwards;
+    -webkit-animation: background-shift 20s forwards;
   }
 }
 
@@ -45,6 +46,17 @@
 }
 
 @keyframes background-shift {
+
+  from {
+    background-position: 0% 50%;
+  }
+
+  to {
+    background-position: 36% 50%;
+  }
+}
+
+@-webkit-keyframes background-shift {
 
   from {
     background-position: 0% 50%;
