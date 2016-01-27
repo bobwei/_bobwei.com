@@ -7,12 +7,17 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50%;
+  transform: translate3d(0, 0, 0);
 
   h1 {
     font-size: 36px;
     margin: 0;
     color: white;
     line-height: 38px;
+  }
+
+  &.background-shift {
+    animation: background-shift 20s forwards;
   }
 }
 
@@ -24,7 +29,6 @@
 
     h1 {
       font-size: 30px;
-      // padding: 100px 0 0 0;
       margin: 0 20px;
       max-width: 300px;
     }
@@ -36,7 +40,17 @@
   .cover-photo {
 
     h1 {
-      // padding-top: 150px;
     }
+  }
+}
+
+@keyframes background-shift {
+
+  from {
+    background-position: 0% 50%;
+  }
+
+  to {
+    background-position: 36% 50%;
   }
 }

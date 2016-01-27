@@ -27,7 +27,7 @@ class MainPage extends React.Component {
       <div>
         <NavigationBar />
         <div
-          className="cover-photo center"
+          className="cover-photo center background-shift"
           style={{
             backgroundImage: `url(${coverPhoto})`,
             position: 'relative'
