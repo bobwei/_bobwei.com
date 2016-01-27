@@ -1,7 +1,8 @@
+/* global ga */
 import React from 'react';
 import { Router, Route } from 'react-router';
 
-import MainPage from '../containers/MainPage';
+import App from '../containers/App';
 import AboutPage from '../containers/AboutPage';
 
 
@@ -10,14 +11,14 @@ export default function(history) {
     <Router
       history={history}
       onUpdate={() => {
-        /* global ga */
         ga('send', 'pageview', {
           location: window.location.href
         });
       }}
     >
-      <Route path="/" component={MainPage} />
-      <Route path="/about" component={AboutPage} />
+      <Route path="/" component={App}>
+        <Route path="about" components={{ main: AboutPage }} />
+      </Route>
     </Router>
   );
 }
