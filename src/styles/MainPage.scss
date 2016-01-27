@@ -1,0 +1,27 @@
+.products-link {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  color: white;
+  margin-bottom: 10px;
+  cursor: pointer;
+
+  h2 {
+    margin: 0;
+    font-size: 25px;
+  }
+
+  i {
+    font-size: 25px;
+    margin: 5px;
+  }
+
+  &:hover {
+
+    h2 {
+      color: darken(white, 15%);
+    }
+  }
+}
