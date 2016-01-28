@@ -61,7 +61,7 @@ app.get('/robots.txt', (request, response) => {
   })
 })
 
-app.get('*', function(request, response) {
+let renderFunction = (request, response) => {
   let history = createHistory();
   let routes = createRoutes(history);
   let store = configureStore(undefined, history);
@@ -88,7 +88,10 @@ app.get('*', function(request, response) {
       response.status(404).send('Not found');
     }
   })
-});
+}
+
+app.get('*', renderFunction);
+app.post('*', renderFunction);
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
