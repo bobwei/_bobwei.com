@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import jQuery from 'jquery';
 
-import NavigationBar from '../components/NavigationBar';
 import Pages from '../components/Pages';
 
 if (process.env.BROWSER) {
@@ -25,7 +24,6 @@ class MainPage extends React.Component {
     }
     return (
       <div>
-        <NavigationBar />
         <div
           className="cover-photo center background-shift"
           style={{

@@ -8,6 +8,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { browserHistory, hashHistory } from 'react-router';
+import './utils/react-fastclick';
 
 import Parse from 'parse';
 Parse.initialize(

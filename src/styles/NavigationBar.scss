@@ -2,6 +2,24 @@
   min-height: 80px;
   font-size: 18px;
   padding: 15px 0;
+
+  i.fa.fa-bars {
+    font-size: 22px;
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+
+    &:active {
+      opacity: 0.5;
+    }
+  }
+}
+
+@media (max-width: $screen-sm-max) {
+
+  .navbar {
+    padding: 0;
+  }
 }
 
 .navbar-transparent {
@@ -22,11 +40,20 @@
   }
 }
 
-.navbar-nav {
+.navbar-collapse {
+  border: 0;
+}
 
-  &.right {
-    float: right;
+@media (max-width: $screen-sm-max) {
+
+  .navbar-brand {
+    padding-left: 0;
+    padding-right: 15px;
   }
+}
+
+.navbar-nav {
+  float: right;
 }
 
 .nav > li > a:hover, .nav > li > a:focus {
@@ -50,20 +77,37 @@
       position: relative;
     }
 
-    .collapse {
-      display: block;
-      position: absolute;
-      top: 0;
+    .navbar-collapse {
+      text-align: center;
+      position: fixed;
       right: 0;
-      bottom: 0;
-      border-top: 0;
-      margin: 0;
-      padding: 0;
+      left: 0;
+      height: 100%;
+      background-color: #333;
     }
   }
 
   .navbar-nav {
-    margin: 4px 0;
+    margin: 0;
+    float: none;
+
+    li {
+
+      a {
+        // margin: 10px;
+        // background-color: lighten(#333, 5%);
+
+
+        &:hover {
+          // color: white;
+          // background-color: lighten(#333, 10%);
+        }
+      }
+
+      &:first-child {
+        margin-top: 10px;
+      }
+    }
   }
 }
 

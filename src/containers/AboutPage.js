@@ -2,8 +2,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import NavigationBar from '../components/NavigationBar';
-
 
 class AboutPage extends React.Component {
 
@@ -24,7 +22,6 @@ class AboutPage extends React.Component {
     }
     return (
       <div>
-        <NavigationBar />
         <div
           className="cover-photo center direction-column"
           style={{
