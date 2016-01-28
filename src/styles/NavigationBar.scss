@@ -84,8 +84,8 @@
       left: 0;
       height: 100%;
       background-color: #333;
-      -webkit-transition: opacity 0.25s ease;
-      transition: opacity 0.25s ease;
+      display: none;
+
       -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
       -webkit-transform-style: preserve-3d;
@@ -116,9 +116,13 @@
     }
   }
 
-  .collapse {
-    display: block;
-    opacity: 0;
+  .navbar {
+
+    .not-collapse {
+      display: block;
+      -webkit-animation: fadeInfromNone 0.25s ease both;
+      animation: fadeInfromNone 0.25s ease both;
+    }
   }
 }
 

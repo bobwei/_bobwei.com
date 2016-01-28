@@ -52,7 +52,7 @@ class NavigationBar extends React.Component {
             </Link>
             <SocialButton likeUrl={likeUrl} />
           </div>
-          <div className={classnames('navbar-collapse', { 'collapse': this.state.isMenuHidden })}>
+          <div className={classnames('navbar-collapse', { 'not-collapse': !this.state.isMenuHidden })}>
             <ul className="nav navbar-nav">
               <li className={classnames({'active': this.context.router.isActive({pathname: '/about'})})}>
                 <Link to="/" onClick={this.onBarsClick.bind(this)}>
