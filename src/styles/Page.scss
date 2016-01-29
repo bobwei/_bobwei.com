@@ -73,3 +73,30 @@
     }
   }
 }
+
+.banner-contact-me {
+  color: white;
+  height: 200px;
+  flex-direction: column;
+  padding: 20px;
+  text-align: center;
+
+  h2 {
+    font-size: 22px;
+    line-height: 30px;
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: $screen-sm-max) {
+
+  .banner-contact-me {
+
+    h2 {
+      font-size: 20px;
+      line-height: 28px;
+      margin-bottom: 20px;
+    }
+  }
+}

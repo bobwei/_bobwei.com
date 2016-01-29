@@ -1,6 +1,7 @@
 /* global ga */
 import React from 'react';
 import classnames from 'classnames';
+import { Link } from 'react-router';
 
 import { nl2br } from '../utils';
 
@@ -69,6 +70,16 @@ export default class Pages extends React.Component {
             </div>
           );
         })}
+        <div className="banner-contact-me center">
+          <h2>
+            無論是合作開發，抑或點子諮詢，都歡迎您隨時隨地與我聯絡。
+          </h2>
+          <Link
+            to="/contact"
+            className="btn btn-transparent btn-lg">
+            聯絡我
+          </Link>
+        </div>
       </div>
     );
   }
