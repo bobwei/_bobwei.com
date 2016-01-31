@@ -20,7 +20,7 @@ class ContactForm extends React.Component {
         </div>
         <div className="form-group" style={{ textAlign: 'center' }}>
           <button className="btn btn-default btn-color btn-green" type="submit">
-            送出
+            {(this.props.isSaving) ? '儲存中...': '送出'}
           </button>
         </div>
       </form>

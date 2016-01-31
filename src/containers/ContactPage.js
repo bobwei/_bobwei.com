@@ -2,12 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ContactForm from '../components/ContactForm';
+import { createContact } from '../actions/contact';
 
 
 class ContactPage extends React.Component {
 
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      isSaving: false,
+      isComplete: false
+    };
+  }
+
   onSubmit(data) {
-    console.log(data);
+    this.setState({ isSaving: true });
+    this.props
+      .dispatch(createContact(data))
+      .then(() => {
+        alert('感謝您的來信，將儘速與您聯繫，謝謝。:)');
+        window.location.reload();
+        // this.setState({ isSaving: false, isComplete: true });
+        // this.props.dispatch({ type: 'redux-form/RESET', form: 'contact' });
+      });
   }
 
   render() {
@@ -31,7 +48,9 @@ class ContactPage extends React.Component {
                   聯絡我
                 </h2>
                 <ContactForm
+                  ref="contactForm"
                   onSubmit={this.onSubmit.bind(this)}
+                  isSaving={this.state.isSaving}
                 />
               </div>
             </div>
