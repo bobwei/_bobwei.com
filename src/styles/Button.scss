@@ -1,3 +1,5 @@
+$btn-green: #56B68B;
+
 .btn-transparent {
   color: white;
   background-color: transparent;
@@ -6,6 +8,24 @@
   &:hover, &:focus {
     color: darken(white, 15%);
     border-color: darken(white, 15%);
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+}
+
+.btn-color {
+
+  &.btn-green {
+    color: white;
+    background-color: $btn-green;
+    border-color: $btn-green;
+  }
+
+  &:hover, &:focus {
+    color: darken(white, 15%);
+    border-color: $btn-green;
   }
 
   &:active {

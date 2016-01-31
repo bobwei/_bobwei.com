@@ -72,7 +72,7 @@ export default class Pages extends React.Component {
         })}
         <div className="banner-contact-me center">
           <h2>
-            無論是合作開發，抑或點子諮詢，都歡迎您隨時隨地與我聯絡。
+            無論是合作開發，抑或點子諮詢，都歡迎您隨時與我聯絡。
           </h2>
           <Link
             to="/contact"

@@ -4,9 +4,6 @@ import jQuery from 'jquery';
 
 import Pages from '../components/Pages';
 
-if (process.env.BROWSER) {
-  require('../styles/MainPage.scss');
-}
 
 class MainPage extends React.Component {
 

@@ -4,6 +4,7 @@ import { Router, Route } from 'react-router';
 
 import App from '../containers/App';
 import AboutPage from '../containers/AboutPage';
+import ContactPage from '../containers/ContactPage';
 
 
 export default function(history) {
@@ -18,6 +19,7 @@ export default function(history) {
     >
       <Route path="/" component={App}>
         <Route path="about" components={{ main: AboutPage }} />
+        <Route path="contact" components={{ main: ContactPage }} />
       </Route>
     </Router>
   );

@@ -12,6 +12,9 @@ $fa-font-path:   "../bower_components/fontawesome/fonts";
 @import "./Button";
 @import "./Profile";
 
+@import "./MainPage";
+@import "./ContactPage";
+
 body {
   letter-spacing: 1px;
   font-family: HelveticaNeue-Light;

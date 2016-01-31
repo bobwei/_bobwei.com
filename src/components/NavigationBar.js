@@ -60,6 +60,11 @@ class NavigationBar extends React.Component {
                 </Link>
               </li>
               <li>
+                <Link to="/contact" onClick={this.onBarsClick.bind(this)}>
+                  聯絡我
+                </Link>
+              </li>
+              <li>
                 <Link to="/about" onClick={this.onBarsClick.bind(this)}>
                   關於
                 </Link>

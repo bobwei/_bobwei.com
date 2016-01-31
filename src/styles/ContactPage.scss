@@ -1,0 +1,37 @@
+.contact-page {
+  color: white;
+
+  .container {
+    padding: 0;
+  }
+
+  .cover-photo {
+    min-height: 100vh;
+    padding: 80px 0;
+  }
+
+  .gradient-content {
+    width: 100%;
+  }
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+
+  form {
+    text-align: left;
+    padding: 40px 50px;
+    margin: 20px;
+    border-radius: 3px;
+    background-color: rgba(174,180,180,.5);
+  }
+
+  @media (max-width: $screen-sm-max) {
+
+    form {
+      margin: 0;
+      padding: 20px;
+    }
+  }
+}
