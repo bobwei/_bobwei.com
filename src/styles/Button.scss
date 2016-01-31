@@ -21,6 +21,12 @@ $btn-green: #56B68B;
     color: white;
     background-color: $btn-green;
     border-color: $btn-green;
+
+    &:active {
+      color: white;
+      background-color: darken($btn-green, 10%);
+      border-color: darken($btn-green, 10%);
+    }
   }
 
   &:hover, &:focus {

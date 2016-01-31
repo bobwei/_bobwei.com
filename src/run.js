@@ -2,6 +2,8 @@
 if (process.env.BROWSER) {
   require('normalize.css');
   require('./styles/App.scss');
+  // to allow :active styles to work in your CSS on a page in Mobile Safari
+  document.addEventListener('touchstart', function(){}, true);
 }
 
 import React from 'react';
@@ -9,7 +11,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { browserHistory, hashHistory } from 'react-router';
 import './utils/react-fastclick';
-
 import Parse from 'parse';
 Parse.initialize(
   process.env.PARSE_APPLICATION_ID,

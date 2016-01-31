@@ -8,7 +8,7 @@ class ContactForm extends React.Component {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>稱呼</label>
-          <input className="form-control" type="text" placeholder="如何稱呼您" {...fields.name} autoFocus />
+          <input className="form-control" type="text" placeholder="如何稱呼您" {...fields.name} />
         </div>
         <div className="form-group">
           <label>Email</label>

@@ -64,6 +64,13 @@
   color: #ddd;
 }
 
+@media (max-width: $screen-sm-max) {
+
+  .nav > li > a:active {
+    background-color: lighten(#333, 5%);
+  }
+}
+
 .navbar-absolute-top {
   position: absolute;
   top: 0;
