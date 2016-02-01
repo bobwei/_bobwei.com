@@ -56,18 +56,49 @@
   float: right;
 }
 
-.nav > li > a:hover, .nav > li > a:focus {
-  background-color: transparent;
+.nav {
+
+  li {
+
+    a {
+
+      &:hover, &:focus {
+        background-color: transparent;
+      }
+
+      &:hover {
+        color: #ddd;
+      }
+    }
+  }
 }
 
-.nav > li > a:hover {
-  color: #ddd;
+@media (min-width: $screen-lg-min) {
+
+  .nav {
+
+    li {
+
+      &.active {
+        border-bottom: 3px solid white;
+      }
+    }
+  }
 }
 
 @media (max-width: $screen-sm-max) {
 
-  .nav > li > a:active {
-    background-color: lighten(#333, 5%);
+  .nav {
+
+    li {
+
+      a {
+
+        &:active {
+          background-color: lighten(#333, 5%);
+        }
+      }
+    }
   }
 }
 

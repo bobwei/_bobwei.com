@@ -54,17 +54,17 @@ class NavigationBar extends React.Component {
           </div>
           <div className={classnames('navbar-collapse', { 'not-collapse': !this.state.isMenuHidden })}>
             <ul className="nav navbar-nav">
-              <li className={classnames({'active': this.context.router.isActive({pathname: '/about'})})}>
+              <li className={classnames({'active': this.context.router.isActive({pathname: '/'}, true)})}>
                 <Link to="/" onClick={this.onBarsClick.bind(this)}>
                   首頁
                 </Link>
               </li>
-              <li>
+              <li className={classnames({'active': this.context.router.isActive({pathname: '/contact'})})}>
                 <Link to="/contact" onClick={this.onBarsClick.bind(this)}>
                   聯絡我
                 </Link>
               </li>
-              <li>
+              <li className={classnames({'active': this.context.router.isActive({pathname: '/about'})})}>
                 <Link to="/about" onClick={this.onBarsClick.bind(this)}>
                   關於
                 </Link>
