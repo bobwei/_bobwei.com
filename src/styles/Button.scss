@@ -46,4 +46,8 @@ $btn-green: #56B68B;
     vertical-align: middle;
     margin-left: 10px;
   }
+
+  &:active {
+    opacity: 0.5;
+  }
 }
