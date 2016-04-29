@@ -64,6 +64,21 @@ export default class Pages extends React.Component {
                         );
                       }
                     })()}
+                    {(() => {
+                      if (page.link.web) {
+                        let url = page.link.web;
+                        return (
+                          <a
+                            href={url}
+                            className="btn btn-transparent btn-lg download"
+                            target="_blank"
+                            onClick={this.onDownloadClick.bind(this, page.contentTitle, 'Web')}
+                          >
+                            Demo
+                          </a>
+                        );
+                      }
+                    })()}
                   </div>
                 </div>
               </div>
@@ -128,6 +143,26 @@ Pages.defaultProps = {
     link: {
       ios: 'https://itunes.apple.com/tw/app/dong-nan-lu-you/id472918191',
       android: 'https://play.google.com/store/apps/details?id=tw.com.settour.android.mobilecalendar'
+    }
+  }, {
+    order: 'ltr',
+    coverImage: (() => {
+      if (process.env.BROWSER) {
+        // return 'http://taiwantaichi.com/assets/c912920e15812a34b4b609e4b97f3a5a.jpg';
+        return require('../images/taiwantaichi.png');
+      }
+    })(),
+    subpage0Styles: {
+      backgroundColor: 'white'
+    },
+    subpage1Styles: {
+      backgroundColor: '#454545'
+    },
+    contentTitle: '台灣太極線上課程',
+    description: `台灣太極武術學院是一套太極養生與健康促進的專業學程，
+    並可以利用行動裝置學習臺灣太極的系統課程`,
+    link: {
+      web: 'http://taiwantaichi.com/courses'
     }
   }]
 };
