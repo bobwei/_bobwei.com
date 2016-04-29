@@ -43,7 +43,7 @@ module.exports = {
     loaders: [
       {
         test: /\.css$/,
-        loader: 'style!css'
+        loader: 'style-loader!css-loader'
       },
       {
         test: /\.sass/,
@@ -65,14 +65,18 @@ module.exports = {
       {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
       {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
       {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'},
-      // {
-      //   test: /\.scss$/,
-      //   loader: 'style-loader!css-loader!sass-loader!postcss-loader?outputStyle=expanded'
-      // }
-      {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader!postcss-loader?outputStyle=expanded')
-      }
+      (() => {
+        if (process.env.inlineCSSInJS) {
+          return {
+            test: /\.scss$/,
+            loader: 'style-loader!css-loader!sass-loader!postcss-loader?outputStyle=expanded'
+          };
+        }
+        return {
+          test: /\.scss$/,
+          loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader!postcss-loader?outputStyle=expanded')
+        };
+      })()
     ]
   },
   postcss: function () {

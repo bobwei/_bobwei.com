@@ -1,9 +1,8 @@
-$icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
-$fa-font-path:   "../bower_components/fontawesome/fonts";
-
-@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
-@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
-@import "../bower_components/fontawesome/scss/font-awesome";
+$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap-sprockets';
+$fa-font-path: '~font-awesome/fonts';
+@import '~font-awesome/scss/font-awesome.scss';
 
 @import "./Animations";
 @import "./NavigationBar";

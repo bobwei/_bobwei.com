@@ -1,10 +1,8 @@
 /* global ga */
-if (process.env.BROWSER) {
-  require('normalize.css');
-  require('./styles/App.scss');
-  // to allow :active styles to work in your CSS on a page in Mobile Safari
-  document.addEventListener('touchstart', function(){}, true);
-}
+import 'normalize.css';
+import './styles/App.scss';
+// to allow :active styles to work in your CSS on a page in Mobile Safari
+document.addEventListener('touchstart', function(){}, true);
 
 import React from 'react';
 import ReactDOM from 'react-dom';
