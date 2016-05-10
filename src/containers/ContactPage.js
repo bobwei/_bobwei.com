@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { reduxForm } from 'redux-form';
 
-import ContactForm from '../components/ContactForm';
 import { createContact } from '../actions/contact';
 
 
@@ -22,8 +22,6 @@ class ContactPage extends React.Component {
       .then(() => {
         alert('感謝您的來信，將儘速與您聯繫，謝謝。:)');
         window.location.reload();
-        // this.setState({ isSaving: false, isComplete: true });
-        // this.props.dispatch({ type: 'redux-form/RESET', form: 'contact' });
       });
   }
 
@@ -32,6 +30,7 @@ class ContactPage extends React.Component {
     if (process.env.BROWSER) {
       coverPhoto = require('../images/bg2.jpg');
     }
+    let { handleSubmit, fields } = this.props;
     return (
       <div className="contact-page">
         <div
@@ -47,11 +46,56 @@ class ContactPage extends React.Component {
                 <h2>
                   聯絡我
                 </h2>
-                <ContactForm
-                  ref="contactForm"
-                  onSubmit={this.onSubmit.bind(this)}
-                  isSaving={this.state.isSaving}
-                />
+                <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                  <div className="form-group">
+                    <label>
+                      稱呼
+                      {fields.name.touched && fields.name.error && <span className='has-error'>{fields.name.error}</span>}
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control visible-lg"
+                      placeholder="如何稱呼您？"
+                      autoFocus
+                      {...fields.name}
+                    />
+                    <input
+                      type="text"
+                      className="form-control visible-xs visible-sm visible-md"
+                      placeholder="如何稱呼您？"
+                      {...fields.name}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>
+                      Email
+                      {fields.email.touched && fields.email.error && <span className='has-error'>{fields.email.error}</span>}
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Email"
+                      {...fields.email}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>
+                      Message
+                      {fields.message.touched && fields.message.error && <span className='has-error'>{fields.message.error}</span>}
+                    </label>
+                    <textarea
+                      className="form-control"
+                      placeholder="留言"
+                      rows="5"
+                      {...fields.message}
+                    />
+                  </div>
+                  <div className="form-group" style={{ textAlign: 'center' }}>
+                    <button className="btn btn-default btn-color btn-green" type="submit">
+                      {(this.state.isSaving) ? '儲存中...': '送出'}
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -65,6 +109,22 @@ class ContactPage extends React.Component {
 ContactPage.defaultProps = {
 };
 
-export default connect((state) => {
+const fields = [ 'name', 'email', 'message' ];
+let reduxComponent = connect((state) => {
   return state;
 })(ContactPage);
+export default reduxForm(
+  {
+    form: 'contact',
+    fields,
+    validate(data) {
+      const errors = {};
+      fields.forEach((field) => {
+        if (!data[field]) {
+          errors[field] = '必填';
+        }
+      });
+      return errors;
+    }
+  }
+)(reduxComponent);

@@ -4,15 +4,16 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 $fa-font-path: '~font-awesome/fonts';
 @import '~font-awesome/scss/font-awesome.scss';
 
-@import "./Animations";
-@import "./NavigationBar";
-@import "./CoverPhoto";
-@import "./Page";
-@import "./Button";
-@import "./Profile";
+@import './Animations';
+@import './NavigationBar';
+@import './CoverPhoto';
+@import './Page';
+@import './Button';
+@import './Profile';
+@import './Form';
 
-@import "./MainPage";
-@import "./ContactPage";
+@import './MainPage';
+@import './ContactPage';
 
 body {
   letter-spacing: 1px;
@@ -42,7 +43,7 @@ a {
   left: 0;
   z-index: -1;
 
-  background-image: url("../images/gradient.png");
+  background-image: url('../images/gradient.png');
   background-repeat: repeat-x;
   background-size: 1px 200%;
 }
