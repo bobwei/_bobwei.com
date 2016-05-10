@@ -1,84 +1,41 @@
-var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-var port = 8000;
-var srcPath = path.join(__dirname, '/../src');
-var publicPath = '/assets/';
-
+'use strict';
+let path = require('path');
+let defaultSettings = require('./defaults');
+let additionalPaths = [];
 module.exports = {
-  port: port,
+  additionalPaths: additionalPaths,
+  port: defaultSettings.port,
   debug: true,
+  devtool: 'eval',
   output: {
     path: path.join(__dirname, '/../dist/assets'),
     filename: 'app.js',
-    publicPath: publicPath
+    publicPath: defaultSettings.publicPath
   },
   devServer: {
     contentBase: './src/',
     historyApiFallback: true,
     hot: true,
-    port: port,
-    publicPath: publicPath,
+    port: defaultSettings.port,
+    publicPath: defaultSettings.publicPath,
     noInfo: false
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: [
+      '',
+      '.js',
+      '.jsx'
+    ],
     alias: {
-      actions: srcPath + '/actions/',
-      components: srcPath + '/components/',
-      sources: srcPath + '/sources/',
-      stores: srcPath + '/stores/',
-      styles: srcPath + '/styles/',
-      config: srcPath + '/config/' + process.env.REACT_WEBPACK_ENV
+      actions: `${ defaultSettings.srcPath }/actions/`,
+      components: `${ defaultSettings.srcPath }/components/`,
+      sources: `${ defaultSettings.srcPath }/sources/`,
+      stores: `${ defaultSettings.srcPath }/stores/`,
+      styles: `${ defaultSettings.srcPath }/styles/`,
+      config: `${ defaultSettings.srcPath }/config/` + process.env.REACT_WEBPACK_ENV
     }
   },
-  module: {
-    preLoaders: [
-      {
-        test: /\.(js|jsx)$/,
-        include: path.join(__dirname, 'src'),
-        loader: 'eslint-loader'
-      }
-    ],
-    loaders: [
-      {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader'
-      },
-      {
-        test: /\.sass/,
-        loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded&indentedSyntax'
-      },
-      {
-        test: /\.less/,
-        loader: 'style-loader!css-loader!less-loader'
-      },
-      {
-        test: /\.styl/,
-        loader: 'style-loader!css-loader!stylus-loader'
-      },
-      {
-        test: /\.(png|jpg|gif|woff|woff2)$/,
-        loader: 'url-loader?limit=8192'
-      },
-      {test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff'},
-      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
-      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
-      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'},
-      (() => {
-        if (process.env.inlineCSSInJS) {
-          return {
-            test: /\.scss$/,
-            loader: 'style-loader!css-loader!sass-loader!postcss-loader?outputStyle=expanded'
-          };
-        }
-        return {
-          test: /\.scss$/,
-          loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader!postcss-loader?outputStyle=expanded')
-        };
-      })()
-    ]
-  },
+  module: {},
   postcss: function () {
     return [
       require('autoprefixer')

@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 var srcPath = path.join(__dirname, '/../src/');
 
 // Add needed plugins here
@@ -45,6 +46,9 @@ module.exports = {
   plugins: [
     new BowerWebpackPlugin({
       searchResolveModulesDirectories: false
+    }),
+    new webpack.ProvidePlugin({
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     })
   ]
 };

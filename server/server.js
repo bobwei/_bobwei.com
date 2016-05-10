@@ -2,96 +2,38 @@ import express from 'express';
 import cors from 'cors';
 import compression from 'compression';
 import path from 'path';
-import webpack from 'webpack';
-import WebpackDevServer from 'webpack-dev-server';
-import config from '../webpack.config';
-import proxy from 'proxy-middleware';
-import url from 'url';
 import dotenv from 'dotenv';
+dotenv.config();
 
-import React from 'react';
-import createHistory from 'history/lib/createMemoryHistory';
-import { renderToStaticMarkup } from 'react-dom/server';
-import { match, RouterContext } from 'react-router';
-import { Provider } from 'react-redux';
-import createRoutes from '../src/routes/index';
-import configureStore from '../src/stores/configureStore';
+import assets from './middlewares/assets';
+import render from './middlewares/render';
 import openGraph from './middlewares/openGraph';
 
 
+/* express settings */
 let app = express();
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs')
-let env = process.env.env || 'dev';
-console.log('loading server for env: ' + env);
-
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 app.set('port', (process.env.PORT || 5002));
 
-app.use(compression());
-app.use(cors({
-  origin: true,
-  credentials: true
-}));
-app.use(openGraph());
-dotenv.config();
-
-if (env === 'dev') {
-  new WebpackDevServer(webpack(config), config.devServer)
-  .listen(config.port, 'localhost', function(err) {
-    if (err) {
-      console.log(err);
-    }
-    console.log('Webpack Dev Server Listening at localhost:' + config.port);
-  });
-
-  app.use(
-    '/assets/cover-photo.jpg',
-    express.static(__dirname + '/../src/images/cover-photo.jpg')
-  );
-  app.use('/assets', proxy(url.parse('http://localhost:8000/assets')));
-} else {
-  app.use('/assets', express.static(__dirname + '/../dist/assets'));
-}
-
+/* routes */
 app.get('/robots.txt', (request, response) => {
   response.format({
     'text/plain': function () {
       response.status(200).render('robots')
     }
   })
-})
+});
 
-let renderFunction = (request, response) => {
-  let history = createHistory();
-  let routes = createRoutes(history);
-  let store = configureStore(undefined, history);
-  match({
-    routes,
-    location: request.url
-  }, (error, redirectLocation, renderProps) => {
-    if (error) {
-      response.status(500).send(error.message);
-    } else if (redirectLocation) {
-      response.redirect(302, redirectLocation.pathname + redirectLocation.search);
-    } else if (renderProps) {
-      let html = renderToStaticMarkup(
-        <Provider store={store} >
-          <RouterContext {...renderProps} />
-        </Provider>
-      );
-      response.render('index', {
-        html,
-        openGraph: request.openGraph,
-        FACEBOOK_APP_ID: process.env.FACEBOOK_APP_ID
-      });
-    } else {
-      response.status(404).send('Not found');
-    }
-  })
-}
-
-app.get('*', renderFunction);
-app.post('*', renderFunction);
+/* middlewares */
+app.use(compression());
+app.use(cors({
+  origin: true,
+  credentials: true
+}));
+app.use(openGraph());
+app.use(assets());
+app.use(render());
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
