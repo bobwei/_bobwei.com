@@ -34,51 +34,39 @@ export default class Pages extends React.Component {
                     <h3>
                       {nl2br(page.description)}
                     </h3>
-                    {(() => {
-                      if (page.link.ios) {
-                        let url = page.link.ios;
-                        return (
-                          <a
-                            href={url}
-                            className="btn btn-transparent btn-lg download"
-                            target="_blank"
-                            onClick={this.onDownloadClick.bind(this, page.contentTitle, 'iOS')}
-                          >
-                            iOS 下載
-                          </a>
-                        );
-                      }
-                    })()}
-                    {(() => {
-                      if (page.link.android) {
-                        let url = page.link.android;
-                        return (
-                          <a
-                            href={url}
-                            className="btn btn-transparent btn-lg download"
-                            target="_blank"
-                            onClick={this.onDownloadClick.bind(this, page.contentTitle, 'Android')}
-                          >
-                            Android 下載
-                          </a>
-                        );
-                      }
-                    })()}
-                    {(() => {
-                      if (page.link.web) {
-                        let url = page.link.web;
-                        return (
-                          <a
-                            href={url}
-                            className="btn btn-transparent btn-lg download"
-                            target="_blank"
-                            onClick={this.onDownloadClick.bind(this, page.contentTitle, 'Web')}
-                          >
-                            Demo
-                          </a>
-                        );
-                      }
-                    })()}
+                    {
+                      page.link.ios &&
+                      <a
+                        href={page.link.ios}
+                        className="btn btn-transparent btn-lg download"
+                        target="_blank"
+                        onClick={this.onDownloadClick.bind(this, page.contentTitle, 'iOS')}
+                      >
+                        iOS 下載
+                      </a>
+                    }
+                    {
+                      page.link.android &&
+                      <a
+                        href={page.link.android}
+                        className="btn btn-transparent btn-lg download"
+                        target="_blank"
+                        onClick={this.onDownloadClick.bind(this, page.contentTitle, 'Android')}
+                      >
+                        Android 下載
+                      </a>
+                    }
+                    {
+                      page.link.web &&
+                      <a
+                        href={page.link.web}
+                        className="btn btn-transparent btn-lg download"
+                        target="_blank"
+                        onClick={this.onDownloadClick.bind(this, page.contentTitle, 'Web')}
+                      >
+                        Demo
+                      </a>
+                    }
                   </div>
                 </div>
               </div>
