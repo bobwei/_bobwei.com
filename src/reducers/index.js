@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import { routeReducer } from 'redux-simple-router'
+import { routerReducer } from 'react-router-redux';
 
 const rootReducer = combineReducers({
-  routing: routeReducer,
+  routing: routerReducer,
   form: formReducer
 });
 

@@ -35,7 +35,9 @@ class NavigationBar extends React.Component {
   render() {
     let likeUrl;
     try {
-      likeUrl = window.location.href;
+      if (process.env.BROWSER) {
+        likeUrl = window.location.href;
+      }
     } catch(e) {
       console.log(e);
     }

@@ -1,32 +1,31 @@
-var path = require('path');
-var webpack = require('webpack');
-var _ = require('lodash');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-require('dotenv').config();
+'use strict';
 
-var baseConfig = require('./base');
+let path = require('path');
+let webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+let dotenv = require('dotenv');
+dotenv.config();
+
+let baseConfig = require('./base');
+let defaultSettings = require('./defaults');
 
 // Add needed plugins here
-var BowerWebpackPlugin = require('bower-webpack-plugin');
+let BowerWebpackPlugin = require('bower-webpack-plugin');
 
-var config = _.merge({
+let config = Object.assign({}, baseConfig, {
   entry: [
-    'webpack-dev-server/client?http://127.0.0.1:8000',
+    'webpack-dev-server/client?http://127.0.0.1:' + defaultSettings.port,
     'webpack/hot/only-dev-server',
-    'babel-core/lib/polyfill',
-    './src/run'
+    'babel-polyfill',
+    './src/index'
   ],
   cache: true,
-  devtool: 'eval',
+  devtool: 'eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new BowerWebpackPlugin({
       searchResolveModulesDirectories: false
-    }),
-    new webpack.ProvidePlugin({
-      'Promise': 'exports?global.Promise!es6-promise',
-      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     }),
     new webpack.DefinePlugin({
       'process.env': {
@@ -37,15 +36,23 @@ var config = _.merge({
         GOOGLE_ANALYTICS_ID: JSON.stringify(process.env.GOOGLE_ANALYTICS_ID)
       }
     }),
+    new webpack.ProvidePlugin({
+      'Promise': 'exports?global.Promise!es6-promise',
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+    }),
     new ExtractTextPlugin('[name].css')
-  ]
-}, baseConfig);
+  ],
+  module: defaultSettings.getDefaultModules()
+});
 
-// Add needed loaders
+// Add needed loaders to the defaults here
 config.module.loaders.push({
   test: /\.(js|jsx)$/,
   loader: 'react-hot!babel-loader',
-  include: path.join(__dirname, '/../src')
+  include: [].concat(
+    config.additionalPaths,
+    [ path.join(__dirname, '/../src') ]
+  )
 });
 
 module.exports = config;
