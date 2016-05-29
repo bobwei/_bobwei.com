@@ -17,10 +17,10 @@ app.set('view engine', 'ejs');
 app.set('port', (process.env.PORT || 5002));
 
 /* routes */
-app.get('/robots.txt', (request, response) => {
-  response.format({
+app.get('/robots.txt', (req, res) => {
+  res.format({
     'text/plain': function () {
-      response.status(200).render('robots')
+      res.status(200).render('robots')
     }
   })
 });
