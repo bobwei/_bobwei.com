@@ -24,9 +24,17 @@ export default function() {
       '/assets/cover-photo.jpg',
       express.static(__dirname + '/../../src/images/cover-photo.jpg')
     );
+    app.use(
+      '/resume',
+      express.static(__dirname + '/../../src/files/resume_v3.pdf')
+    );
     app.use('/assets', proxy(url.parse(`http://localhost:${config.port}/assets`)));
   // mount assets for production
   } else {
+    app.use(
+      '/resume',
+      express.static(__dirname + '/../../src/files/resume_v3.pdf')
+    );
     app.use('/assets', express.static(__dirname + '/../../dist/assets'));
   }
 
