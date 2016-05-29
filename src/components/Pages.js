@@ -136,7 +136,6 @@ Pages.defaultProps = {
     order: 'ltr',
     coverImage: (() => {
       if (process.env.BROWSER) {
-        // return 'http://taiwantaichi.com/assets/c912920e15812a34b4b609e4b97f3a5a.jpg';
         return require('../images/taiwantaichi.png');
       }
     })(),
@@ -147,10 +146,70 @@ Pages.defaultProps = {
       backgroundColor: '#454545'
     },
     contentTitle: '台灣太極線上課程',
-    description: `台灣太極武術學院是一套太極養生與健康促進的專業學程，
-    並可以利用行動裝置學習臺灣太極的系統課程`,
+    description: `台灣太極是一套太極養生、
+    健康促進的專業學程，
+    行動化、社群化學習太極拳法，
+    隨時隨地、一同切磋太極拳法 !`,
     link: {
       web: 'http://taiwantaichi.com/courses'
     }
+  }, {
+    order: 'rtl',
+    coverImage: (() => {
+      if (process.env.BROWSER) {
+        return require('../images/viveport.png');
+      }
+    })(),
+    subpage0Styles: {
+      backgroundColor: 'white'
+    },
+    subpage1Styles: {
+      backgroundColor: '#111820'
+    },
+    contentTitle: 'HTC Viveport',
+    description: `HTC Viveport 是 Vive 專屬的應用商店，
+    您可以在此購買應用與遊戲，
+    並於 HTC Vive VR 裝置盡情體驗`,
+    link: {
+      web: 'https://contentstore.htcvive.com'
+    }
+  }, {
+    order: 'ltr',
+    coverImage: (() => {
+      if (process.env.BROWSER) {
+        return require('../images/developer_console.png');
+      }
+    })(),
+    subpage0Styles: {
+      backgroundColor: 'white'
+    },
+    subpage1Styles: {
+      backgroundColor: '#2B323A'
+    },
+    contentTitle: 'HTC VR Developer Console',
+    description: `HTC VR Developer Console 是一套內容發佈工具，
+    開發者可在此於 Viveport 上發佈內容、賺取收益，
+    並與 HTC 一同打造最棒的虛擬實境體驗`,
+    link: {
+      web: 'https://developer.htcvive.com/console'
+    }
+  }, {
+    order: 'rtl',
+    coverImage: (() => {
+      if (process.env.BROWSER) {
+        return require('../images/cms.png');
+      }
+    })(),
+    subpage0Styles: {
+      backgroundColor: 'white'
+    },
+    subpage1Styles: {
+      backgroundColor: '#5E656D'
+    },
+    contentTitle: 'HTC VR CMS',
+    description: `HTC VR CMS 是一套內容管理工具，
+    幫助內容管理員審核、編輯發佈於 Viveport 的內容，
+    並可透過此工具管理廣告、促銷計畫與拆潤`,
+    link: {}
   }]
 };
